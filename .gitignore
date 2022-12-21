@@ -1,0 +1,24 @@
+### Project related ###
+.env
+
+### Python ###
+build
+SPPD_M3rc_Tools.egg-info
+__pycache__/
+service/__pycache__/
+
+### IntelliJ IDEA ###
+*.iml
+.idea
+
+### SPPD API RELATED ###
+SPPD_API.py
+MASTERTOKEN.txt
+OAUTHTOKEN.txt
+UBITOKEN.txt
+
+### Mac OS ###
+.DS_Store
+
+
+
