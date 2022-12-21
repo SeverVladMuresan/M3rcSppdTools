@@ -10,7 +10,7 @@ M3rc SPPD Tools is a project designed to aid the M3rcenaries clan in South Park 
     pip install .
     ```
    
-   *Running pip install will also copy **SPPD_API.py** from git into the local project files*
+   *Running pip install will also copy **SPPD_API.py** from its [git repo](https://github.com/rbrasga/sppd-api) into the local project files*
 
 
 2) Make a copy of `.env.example` and name it `.env`
