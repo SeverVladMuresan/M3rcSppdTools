@@ -14,7 +14,6 @@ def human_friendlyfy_card_requests(card_requests):
         cr_valid_until_datetime = datetime.datetime.fromtimestamp(cr['valid_until'])
         expiry = cr_valid_until_datetime - now_datetime
         cr['expiry'] = expiry.__str__()
-    return card_requests
 
 
 def get_human_friendly_username(profile_id):
