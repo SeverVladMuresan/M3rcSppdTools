@@ -24,18 +24,36 @@ class CardRequestService:
                           self.card_requests)
         return list(filtered)
 
-    def get_unfilled_card_requests_about_to_expire(self, expiry_time_delta):
+    def get_unfilled_card_requests_about_to_expire(self, expiry_time_deltas: list):
         now_datetime = datetime.datetime.now()
-        unfilled_card_requests_about_to_expire = []
+        unfilled_card_requests_about_to_expire_map = {}
 
-        for cr in self.unfilled_card_requests:
+        expiry_time_deltas.sort()
+
+        for expiry_time_delta in expiry_time_deltas:
+            unfilled_card_requests_about_to_expire_map[expiry_time_delta] = []
+
+        for cr in self.unfilled_card_requests.copy():
             cr_valid_until_datetime = datetime.datetime.fromtimestamp(cr['valid_until'])
-            if now_datetime + expiry_time_delta > cr_valid_until_datetime:
-                unfilled_card_requests_about_to_expire.append(cr)
 
-        return unfilled_card_requests_about_to_expire
+            for expiry_time_delta in expiry_time_deltas:
+                if now_datetime + expiry_time_delta > cr_valid_until_datetime:
+                    unfilled_card_requests_about_to_expire_map[expiry_time_delta].append(cr)
+                    break
 
-    #Expired card requests are not sent via the SPPD Api
+        return unfilled_card_requests_about_to_expire_map
+
+    # def get_unfilled_card_requests_about_to_expire(self, expiry_time_delta):
+    #     now_datetime = datetime.datetime.now()
+    #     unfilled_card_requests_about_to_expire = []
+    #
+    #     for cr in self.unfilled_card_requests:
+    #         cr_valid_until_datetime = datetime.datetime.fromtimestamp(cr['valid_until'])
+    #         if now_datetime + expiry_time_delta > cr_valid_until_datetime:
+    #             unfilled_card_requests_about_to_expire.append(cr)
+    #
+    #     return unfilled_card_requests_about_to_expire
+
+    # Expired card requests are not sent via the SPPD Api
     def get_expired_card_requests(self, expiry_time_delta):
         raise NotImplementedError("Not implemented yet")
-
