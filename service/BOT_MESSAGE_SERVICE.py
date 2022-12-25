@@ -22,7 +22,7 @@ class BotMessageService:
             messages_for_each_timedelta.append(BotMessageService.
                                                __build_message_for_delta_time(expiry_time_delta, card_requests))
 
-        return '\n'.join(messages_for_each_timedelta)
+        return '\n\n'.join(messages_for_each_timedelta)
 
     @staticmethod
     def __build_message_for_delta_time(expiry_time_delta, card_requests):
