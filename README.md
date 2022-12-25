@@ -17,13 +17,13 @@ M3rc SPPD Tools is a project designed to aid the M3rcenaries clan in South Park 
 3) In `.env` set the following:
    - `GOOGLE_PLAY_USERNAME` and `GOOGLE_PLAY_PASSWORD` - needed in order to work with the SPPD Api
      -  *:warning: Depending on your Google account settings, you may need to use [App Passwords](https://support.google.com/accounts/answer/185833)*
-   - (optional) `DISCORD_TOKEN` - needed to work with the discord bot
+   - `DISCORD_TOKEN` - needed to work with the discord bot
 
 
 ## Usage
 
 ```text
-Simply run the M3RC_TOOLS.py or BOT.py (work in progress)
+Simply run the M3RC_TOOLS.py
 ```
 
 [//]: # (## Contributing)
