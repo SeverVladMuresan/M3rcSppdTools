@@ -32,7 +32,7 @@ class BotMessageService:
         everyone_mention_if_needed_blank_if_not = BotMessageService.EVERYONE_MENTION \
             if expiry_time_delta < BotMessageService.EVERYONE_MENTION_THRESHOLD else ''
         expiry_time_delta_formatted = str(expiry_time_delta)
-        msg = "{0}The following card requests will expire in less than [{1}]:" \
+        msg = "{0}The following card requests will expire in **less than [{1}]**:" \
             .format(everyone_mention_if_needed_blank_if_not, expiry_time_delta_formatted)
 
         card_request_messages = [msg]
