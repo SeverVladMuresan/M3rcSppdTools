@@ -46,6 +46,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.command(name='start')
 async def start_bot(ctx):
+    await ctx.send("Bot started")
     bot_action.start(ctx)
 
 bot.run(DISCORD_TOKEN)
