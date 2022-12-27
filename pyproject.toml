@@ -1,7 +1,7 @@
 
 [project]
 name = "M3rcTools"
-version = "1.0"
+version = "1.0.0"
 
 [tool.setuptools]
 py-modules = []
