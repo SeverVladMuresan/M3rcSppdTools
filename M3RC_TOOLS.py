@@ -1,15 +1,16 @@
 import asyncio
 import datetime
 import os
-
 import SPPD_API
 from service.BOT_MESSAGE_SERVICE import BotMessageService
 from service.CARD_REQUEST_SERVICE import CardRequestService
 import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
-
 from service.SCHEDULING_SERVICE import SchedulingService
+
+
+bot_started: bool = False
 
 TIME_DELTAS = []
 for i in [2, 1]:
@@ -46,8 +47,23 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.command(name='start')
 async def start_bot(ctx):
+    global bot_started
+    bot_started = True
     await ctx.send("Bot started")
     bot_action.start(ctx)
+
+
+@bot.command(name='status')
+async def bot_status(ctx):
+    if bot_started:
+        get_next_even_half_hour = SchedulingService.get_next_even_half_hour()
+        next_update_time_delta = get_next_even_half_hour - datetime.datetime.now()
+        get_next_even_half_hour_formatted = str(next_update_time_delta).split(".")[0]
+        await ctx.send(str.format("Bot started\n"
+                       "The next update is scheduled in **[{0}]**", get_next_even_half_hour_formatted))
+    else:
+        await ctx.send("The bot is not started yet. To start it, type **!start** in the thread")
+
 
 bot.run(DISCORD_TOKEN)
 
