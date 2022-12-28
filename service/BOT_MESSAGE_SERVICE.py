@@ -4,8 +4,8 @@ from HUMAN_FRIENDLY_HELPER import human_friendlyfy_card_requests
 
 
 class BotMessageService:
-    EVERYONE_MENTION = '@everyone'
-    EVERYONE_MENTION_THRESHOLD = datetime.timedelta(hours=1, minutes=10)
+    CARD_REQUEST_NOTIFIER_MENTION = '@CardRequestNotifier'
+    CARD_REQUEST_NOTIFIER_THRESHOLD = datetime.timedelta(hours=1, minutes=10)
 
     @staticmethod
     def build_message(unfilled_card_requests_about_to_expire):
@@ -29,11 +29,11 @@ class BotMessageService:
         if not card_requests:
             return ''
 
-        everyone_mention_if_needed_blank_if_not = BotMessageService.EVERYONE_MENTION \
-            if expiry_time_delta < BotMessageService.EVERYONE_MENTION_THRESHOLD else ''
+        discord_mention_if_needed_blank_if_not = BotMessageService.CARD_REQUEST_NOTIFIER_MENTION \
+            if expiry_time_delta < BotMessageService.CARD_REQUEST_NOTIFIER_THRESHOLD else ''
         expiry_time_delta_formatted = str(expiry_time_delta)
         msg = "{0}The following card requests will expire in **less than [{1}]**:" \
-            .format(everyone_mention_if_needed_blank_if_not, expiry_time_delta_formatted)
+            .format(discord_mention_if_needed_blank_if_not, expiry_time_delta_formatted)
 
         card_request_messages = [msg]
         for cr in card_requests:
