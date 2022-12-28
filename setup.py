@@ -2,7 +2,7 @@ from distutils.core import setup
 import urllib.request
 
 setup(name='SPPD M3rc Tools',
-      version='1.0.0',
+      version='1.0.1',
       description='Tools used by the M3rcenaries SPPD clan',
       author='padawan4330',
       install_requires=['python-dotenv', 'discord', 'pytz', 'gpsoauth', 'requests']
