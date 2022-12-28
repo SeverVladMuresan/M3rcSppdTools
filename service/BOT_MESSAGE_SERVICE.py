@@ -54,8 +54,7 @@ class BotMessageService:
 
         max_time_delta_formatted = str(max_time_delta)
         return "There are no unfilled card requests that are about to expire " \
-               "in **[" + max_time_delta_formatted + "]**\n" \
-               "Good job team!"
+               "in **[" + max_time_delta_formatted + "]**\n"
 
     @staticmethod
     def __is_empty(unfilled_card_requests_about_to_expire):
