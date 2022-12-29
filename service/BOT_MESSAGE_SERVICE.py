@@ -4,11 +4,10 @@ from HUMAN_FRIENDLY_HELPER import human_friendlyfy_card_requests
 
 
 class BotMessageService:
-    CARD_REQUEST_NOTIFIER_MENTION = '@CardRequestNotifier'
     CARD_REQUEST_NOTIFIER_THRESHOLD = datetime.timedelta(hours=1, minutes=10)
 
     @staticmethod
-    def build_message(unfilled_card_requests_about_to_expire):
+    def build_message(unfilled_card_requests_about_to_expire, card_request_notifier_role_mention):
 
         BotMessageService.__validate_unfilled_card_requests_about_to_expire(unfilled_card_requests_about_to_expire)
 
@@ -20,16 +19,17 @@ class BotMessageService:
         messages_for_each_timedelta = []
         for expiry_time_delta, card_requests in unfilled_card_requests_about_to_expire.items():
             messages_for_each_timedelta.append(BotMessageService.
-                                               __build_message_for_delta_time(expiry_time_delta, card_requests))
+                                               __build_message_for_delta_time(expiry_time_delta, card_requests,
+                                                                              card_request_notifier_role_mention))
 
         return '\n\n'.join(messages_for_each_timedelta)
 
     @staticmethod
-    def __build_message_for_delta_time(expiry_time_delta, card_requests):
+    def __build_message_for_delta_time(expiry_time_delta, card_requests, card_request_notifier_role_mention):
         if not card_requests:
             return ''
 
-        discord_mention_if_needed_blank_if_not = BotMessageService.CARD_REQUEST_NOTIFIER_MENTION \
+        discord_mention_if_needed_blank_if_not = card_request_notifier_role_mention \
             if expiry_time_delta < BotMessageService.CARD_REQUEST_NOTIFIER_THRESHOLD else ''
         expiry_time_delta_formatted = str(expiry_time_delta)
         msg = "{0}The following card requests will expire in **less than [{1}]**:" \
