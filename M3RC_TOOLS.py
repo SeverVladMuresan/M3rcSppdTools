@@ -60,6 +60,14 @@ async def start_bot(ctx):
     bot_action.start(ctx)
 
 
+@bot.command(name='stop')
+async def start_bot(ctx):
+    global bot_started
+    bot_started = False
+    await ctx.send("Bot stopped")
+    bot_action.cancel()
+
+
 @bot.command(name='display')
 async def display(ctx):
     await display_unfilled_requests(ctx)
