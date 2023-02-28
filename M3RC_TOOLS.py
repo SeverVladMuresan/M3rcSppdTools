@@ -83,7 +83,7 @@ async def bot_status(ctx):
                                   "The next update is scheduled in **[{0}]**", get_next_even_half_hour_formatted))
     else:
         await ctx.send("The bot is not started yet. To start it, type **!start** in the thread")
-    await ctx.send("The mention that whill be used for card requests is: "
+    await ctx.send("The mention that will be used for card requests is: "
                    + str(DiscordRoleService.get_card_request_notifier_role(ctx)))
 
 
