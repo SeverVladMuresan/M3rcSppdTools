@@ -42,18 +42,3 @@ class CardRequestService:
                     break
 
         return unfilled_card_requests_about_to_expire_map
-
-    # def get_unfilled_card_requests_about_to_expire(self, expiry_time_delta):
-    #     now_datetime = datetime.datetime.now()
-    #     unfilled_card_requests_about_to_expire = []
-    #
-    #     for cr in self.unfilled_card_requests:
-    #         cr_valid_until_datetime = datetime.datetime.fromtimestamp(cr['valid_until'])
-    #         if now_datetime + expiry_time_delta > cr_valid_until_datetime:
-    #             unfilled_card_requests_about_to_expire.append(cr)
-    #
-    #     return unfilled_card_requests_about_to_expire
-
-    # Expired card requests are not sent via the SPPD Api
-    def get_expired_card_requests(self, expiry_time_delta):
-        raise NotImplementedError("Not implemented yet")
